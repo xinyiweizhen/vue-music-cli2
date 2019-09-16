@@ -36,7 +36,10 @@ module.exports = {
     alias: {
       '@': resolve('src'),
       'network': resolve('src/network'),
-      'common': resolve('src/common')
+      'common': resolve('src/common'),
+      'components': resolve('src/components'),
+      'views': resolve('src/views'),
+      'assets': resolve('src/assets')
     }
   },
   module: {
