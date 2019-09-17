@@ -51,7 +51,7 @@ export function getSongList (disstid) {
     utf8: 1,
     onlysong: 0,
     new_format: 1,
-    disstid: disstid,
+    disstid,
     hostUin: 0,
     format: 'json',
     platform: 'yqq.json',

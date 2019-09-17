@@ -36,7 +36,7 @@ export function getSingerList () {
   return axios.get(url, {
     params: reqdata
   }).then(res => {
-    return Promise.resolve(res)
+    return Promise.resolve(res.data)
   }).catch(err => {
     console.log(err)
   })

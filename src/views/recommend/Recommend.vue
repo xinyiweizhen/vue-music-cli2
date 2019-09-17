@@ -24,6 +24,10 @@
           </li>
         </ul>
       </div>
+      <!--loading-->
+      <div class="loading" v-show="!dissList.length">
+        <Loading></Loading>
+      </div>
     </scroll>
   </div>
 </template>
@@ -31,6 +35,7 @@
 <script>
 import Swiper from 'components/common/swiper/Swiper'
 import Scroll from 'components/common/scroll/Scroll'
+import Loading from 'components/common/loading/Loading'
 
 import {getSliderImg, getDissList} from 'network/recommend'
 import {RES_OK} from 'common/networkConfig'
@@ -39,7 +44,8 @@ export default {
   name: 'Recommend',
   components: {
     Scroll,
-    Swiper
+    Swiper,
+    Loading
   },
   data() {
     return {
@@ -64,7 +70,7 @@ export default {
     _getDissList() {
       getDissList().then(res => {
         if (RES_OK === res.code) {
-          console.log(res)
+          // console.log(res)
           this.dissList = res.data.list
         }
       })
@@ -72,7 +78,7 @@ export default {
     loadImg() {
       // 一张图片渲染就行了
       if (!this.checkLoaded) {
-        this.$refs.scroll.refresh()
+        this.$refs.scroll && this.$refs.scroll.Refresh()
         this.checkLoaded = true
       }
     }
@@ -124,5 +130,9 @@ export default {
               color: $color-text
             .desc
               color: $color-text-d
-
+      .loading
+        position absolute
+        width 100%
+        top 50%
+        transform translateY(-50%)
 </style>
