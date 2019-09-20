@@ -30,9 +30,10 @@
 </template>
 
 <script>
-import Scroll from 'common/scroll/Scroll'
-import Loading from 'common/loading/Loading'
-import SongList from 'common/songlist/SongList'
+import Scroll from 'components/common/scroll/Scroll'
+import Loading from 'components/common/loading/Loading'
+
+import SongList from 'components/common/songlist/SongList'
 export default {
   name: 'MusicList',
   components: {
@@ -81,8 +82,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  @import "~common/stylus/variable"
-  @import "~common/stylus/mixin"
+  @import "~assets/stylus/variable"
+  @import "~assets/stylus/mixin"
+
   .music-list
     position fixed
     top 0
@@ -141,8 +143,8 @@ export default {
             font-size: $font-size-medium-x
           .text
             display: inline-block
-                       vertical-align: middle
-                       font-size: $font-size-small
+            vertical-align: middle
+            font-size: $font-size-small
       .filter
         position: absolute;
         top 0

@@ -106,7 +106,7 @@ export default {
         sliderWidth += 2 * clientWidth
       }
       this.$refs.sliderGroup.style.width = sliderWidth + 'px'
-      console.log(sliderWidth)
+      // console.log(sliderWidth)
     },
     /**
        * 初始化better-scroll
@@ -159,7 +159,7 @@ export default {
     refresh() {
       if (this.slider) {
         this._setSliderWidth(true)
-        this.slide.refresh()
+        this.slider.refresh()
       }
     }
 

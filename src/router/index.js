@@ -7,6 +7,7 @@ const Rank = () => import('views/rank/Rank')
 const Recommend = () => import('views/recommend/Recommend')
 const Search = () => import('views/search/Search')
 const Singer = () => import('views/singer/Singer')
+const SingerDetail = () => import('views/singer/childComponent/SingerDetail')
 
 //  路由映射
 const routes = [
@@ -28,7 +29,13 @@ const routes = [
   },
   {
     path: '/singer',
-    component: Singer
+    component: Singer,
+    children: [
+      {
+        path: ':id',
+        component: SingerDetail
+      }
+    ]
   }
 ]
 

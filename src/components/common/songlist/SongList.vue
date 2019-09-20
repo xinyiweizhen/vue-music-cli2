@@ -53,8 +53,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  @import "~common/stylus/variable"
-  @import "~common/stylus/mixin"
+  @import "~assets/stylus/variable"
+  @import "~assets/stylus/mixin"
   .song-list
     .item
       display flex
@@ -73,11 +73,11 @@ export default {
           height: 25 px
           background-size 25px
           &.icon-0
-            bg-image(0)
+            bg-image(first)
           &.icon-1
-            bg-image(1)
+            bg-image(second)
           &.icon-2
-            bg-image(2)
+            bg-image(third)
         .text
           color: $color-theme
           font-size: $font-size-large

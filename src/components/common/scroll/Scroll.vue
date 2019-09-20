@@ -32,6 +32,12 @@ export default {
     IsListenScroll: {
       type: Boolean,
       default: false
+    },
+    data: {
+      type: Array,
+      default() {
+        return []
+      }
     }
   },
   mounted () {
@@ -59,6 +65,14 @@ export default {
     },
     Refresh() {
       this.scroll && this.scroll.refresh()
+    }
+  },
+  watch: {
+    // data发生变化就refresh
+    data() {
+      setTimeout(() => {
+        this.Refresh()
+      }, 20)
     }
   }
 }

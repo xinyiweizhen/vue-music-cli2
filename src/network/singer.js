@@ -1,5 +1,4 @@
 import axios from 'axios'
-// eslint-disable-next-line no-unused-vars
 import { commonParams } from '../common/networkConfig'
 
 /**

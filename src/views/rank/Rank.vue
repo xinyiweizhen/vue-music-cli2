@@ -27,8 +27,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  @import "~common/stylus/variable"
-  @import "~common/stylus/mixin"
+  @import "~assets/stylus/variable"
+  @import "~assets/stylus/mixin"
   .rank
     position fixed
     width 100%
