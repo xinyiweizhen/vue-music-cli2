@@ -1,28 +1,30 @@
 <template>
   <div class="recommend">
     <scroll ref="scroll" class="recommend-content">
-      <div class="swiper-wrapper" v-if="banners.length">
-        <swiper ref="swiper" >
-          <div v-for="item in banners" :key="item.id">
-            <a :href="item.linkUrl">
-              <img :src="item.picUrl" alt="" @load="loadImg"/>
-            </a>
-          </div>
-        </swiper>
-      </div>
-      <div class="recommends-list">
-        <h1 class="list-title" >热门歌单推荐</h1>
-        <ul>
-          <li v-for="item in dissList" :key="item.dissid" class="item">
-            <div class="diss-img">
-              <img v-lazy="item.imgurl" :alt="item.dissname" width="60" height="60">
+      <div>
+        <div class="swiper-wrapper" v-if="banners.length">
+          <swiper ref="swiper" >
+            <div v-for="item in banners" :key="item.id">
+              <a :href="item.linkUrl">
+                <img :src="item.picUrl" alt="" @load="loadImg"/>
+              </a>
             </div>
-            <div class="diss-text">
-              <h2 class="name">{{item.dissname}}</h2>
-              <p class="desc"></p>
-            </div>
-          </li>
-        </ul>
+          </swiper>
+        </div>
+        <div class="recommend-list" >
+          <h1 class="list-title" >热门歌单推荐</h1>
+          <ul>
+            <li v-for="item in dissList" :key="item.dissid" class="item">
+              <div class="diss-img">
+                <img v-lazy="item.imgurl" :alt="item.dissname" width="60" height="60">
+              </div>
+              <div class="diss-text">
+                <h2 class="name">{{item.dissname}}</h2>
+                <p class="desc"></p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
       <!--loading-->
       <div class="loading" v-show="!dissList.length">
@@ -51,7 +53,7 @@ export default {
     return {
       banners: [],
       dissList: [],
-      checkLoaded: false
+      checkImgLoaded: false
     }
   },
   created () {
@@ -77,9 +79,9 @@ export default {
     },
     loadImg() {
       // 一张图片渲染就行了
-      if (!this.checkLoaded) {
+      if (!this.checkImgLoaded) {
         this.$refs.scroll && this.$refs.scroll.Refresh()
-        this.checkLoaded = true
+        this.checkImgLoaded = true
       }
     }
 
@@ -101,7 +103,7 @@ export default {
         position: relative
         width: 100%
         overflow: hidden
-      .recommends-list
+      .recommend-list
         .list-title
           height 65px
           line-height 65px

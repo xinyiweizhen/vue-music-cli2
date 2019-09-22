@@ -3,7 +3,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Lazyload from 'vue-lazyload'
-
+import store from './store/'
 import 'assets/stylus/index.styl'
 
 Vue.config.productionTip = false
@@ -14,5 +14,6 @@ Vue.use(Lazyload, {
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })

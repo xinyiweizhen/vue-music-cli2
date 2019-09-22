@@ -4,21 +4,22 @@
     <keep-alive>
       <router-view/>
     </keep-alive>
+    <player></player>
   </div>
 </template>
 
 <script>
 
 import NavTab from 'components/content/navtab/NavTab'
+import Player from './components/content/player/Player'
 export default {
   name: 'App',
   components: {
-    NavTab
+    NavTab,
+    Player
   }
 }
 </script>
 
 <style>
-#app {
-}
 </style>
