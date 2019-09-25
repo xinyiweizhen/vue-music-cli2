@@ -6,7 +6,7 @@ const state = {
   // 播放状态
   playStatus: false,
   // 播放器是全屏还是收起
-  isFullScreen: false,
+  isFullScreen: true,
   // 播放列表
   playList: [],
   // 循环列表

@@ -11,6 +11,7 @@ import MusicList from 'components/content/musiclist/MusicList'
 import { getSingerDetail } from 'network/singer'
 import { mapGetters } from 'vuex'
 import { RES_OK } from 'common/networkConfig'
+import {creacteSong} from 'common/song'
 
 export default {
   name: 'SingerDetail',
@@ -43,13 +44,21 @@ export default {
       }
       getSingerDetail(this.singer.id, 50).then((res) => {
         if (RES_OK === res.code) {
-          // console.log(res)
-          this.songs = res.singer.data.songlist
+          console.log(res)
+          this.songs = this._normalizeSongs(res.singer.data.songlist)
+          // console.log(this._normalizeSongs(res.singer.data.songlist))
         }
       })
     },
     // 封装歌曲数据
     _normalizeSongs(list) {
+      let songs = []
+      list.forEach((item) => {
+        if (item) {
+          songs.push(creacteSong(item))
+        }
+      })
+      return songs
     }
   }
 }

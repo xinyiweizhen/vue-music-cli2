@@ -42,7 +42,7 @@ export default {
     _getSingerList() {
       getSingerList().then(res => {
         if (RES_OK === res.code) {
-          // console.log(res)
+          console.log(res)
           this.singers = this._initSingersData(res.singerList.data.singerlist)
         }
       })

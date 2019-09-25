@@ -24,7 +24,7 @@
             :is-listen-scroll="IsListenScroll"
             @scroll="scroll">
       <div class="song-list-wrapper">
-        <song-list :songs="songs"></song-list>
+        <song-list :songs="songs" @select="SelectedSong" ></song-list>
       </div>
       <!-- <div class="loading-container" v-show="!songs.length">
         <loading></loading>
@@ -39,6 +39,9 @@ import Loading from 'components/common/loading/Loading'
 import SongList from 'components/common/songlist/SongList'
 
 import { prefixStyle } from 'common/dom'
+
+import { mapActions } from 'vuex'
+
 // 标题的高度
 const RESERVED_HEIGHT = 40
 
@@ -111,7 +114,14 @@ export default {
     randomPlay() {
     },
     SelectedSong(song, index) {
-    }
+      this.selectPlay({
+        list: this.songs,
+        index
+      })
+    },
+    ...mapActions({
+      selectPlay: 'selectPlay'
+    })
   },
   watch: {
     scrollY(newY) {

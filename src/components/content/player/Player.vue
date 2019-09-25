@@ -1,5 +1,5 @@
 <template>
-  <div class="player">
+  <div class="player" v-show="playList.length>0" ref="player">
     <div class="normal-player" v-show="isFullScreen">
       <div class="background">
         <img src="" alt="" width="100%" height="100%">
@@ -9,14 +9,14 @@
         <div class="back" @click="back">
             <i class="icon-back"></i>
         </div>
-        <h1 class="title"></h1>
+        <h1 class="title">{{currentSong.name}}</h1>
         <h2 class="subtitle"></h2>
       </div>
       <div class="middle">
         <div class="middle-left" ref="middleL">
             <div class="cd-wrapper">
               <div class="cd" >
-                <img class="image">
+                <img :src="currentSong.cover" class="image" :class="cdAddClass">
               </div>
             </div>
             <div class="playing-lyric-wrapper">
@@ -69,14 +69,14 @@
       </div>
     </div>
     <!-- mini -->
-    <div class="mini-player" v-show="!isFullScreen">
+    <div class="mini-player" v-show="!isFullScreen" @click="open">
         <div class="icon">
           <div class="imgWrapper">
-          <img width="40" height="40" >
+          <img width="40" height="40" :src="currentSong.cover">
           </div>
         </div>
         <div class="text">
-          <h2 class="name"></h2>
+          <h2 class="name">{{currentSong.name}}</h2>
           <p class="desc"></p>
         </div>
         <div class="control">
@@ -85,7 +85,13 @@
         <div class="control" >
           <i class="icon-playlist"></i>
         </div>
-      </div>
+     </div>
+    <playlist ref="playlist"></playlist>
+    <!-- 当currentSong发生变化时，开始播放 -->
+    <!-- 当浏览器能够开始播放指定的音频/视频时，发生 canplay 事件 -->
+    <!-- 当音频已经开始播放的时候执行play事件 -->
+    <!-- timeupdate 事件在音频/视频（audio/video）的播放位置发生改变时触发。 -->
+    <audio ref="audio" :src="currentSong.url"></audio>
   </div>
 </template>
 
@@ -93,7 +99,7 @@
 import Scroll from 'components/common/scroll/Scroll'
 import ProgressBar from 'components/common/progressbar/ProgressBar'
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Player',
@@ -101,22 +107,37 @@ export default {
     ProgressBar,
     Scroll
   },
+  data() {
+    return {
+    }
+  },
   computed: {
     // 播放按钮切换
     playIcon() {
-      return this.playing ? 'icon-pause' : 'icon-play'
+      return this.playStatus ? 'icon-pause' : 'icon-play'
     },
     // mini播放按钮切换
     miniIcon() {
-      return this.playing ? 'icon-pause-mini' : 'icon-play-mini'
+      return this.playStatus ? 'icon-pause-mini' : 'icon-play-mini'
     },
-    ...mapGetters(['isFullScreen', 'playStatus', 'currentIndex'])
+    // cd转圈
+    cdAddClass() {
+      console.log(this.playStatus)
+      return this.playStatus ? 'play' : 'play pause'
+    },
+    ...mapGetters(['isFullScreen', 'playStatus', 'currentIndex', 'currentSong', 'playList'])
   },
   methods: {
     // 切换全屏与mini
     back() {
-
-    }
+      this.setFullScreen(false)
+    },
+    open() {
+      this.setFullScreen(true)
+    },
+    ...mapMutations({
+      setFullScreen: 'SET_FULL_SCREEN'
+    })
   }
 }
 </script>
